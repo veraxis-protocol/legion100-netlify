@@ -1,0 +1,4 @@
+part_number,description,quantity,revision,material,process,tolerance
+BES00UY,M12 proximity sensor PNP NO nonflush,20,B,,Purchased assembly,
+BRACKET-M6,Mounting bracket,20,B,6061-T6,CNC milling,+/-0.1mm
+BOLT-M6X20,M6 x 20 socket head bolt,40,B,Class 12.9,Standard fastener,
