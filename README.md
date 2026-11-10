@@ -1,26 +1,11 @@
-# LEGION Netlify Deploy 003 — private NIM review safeguard
+# LEGION Customer Token-Free Fix 004
 
-This is the updated deploy bundle for **the same existing Netlify project `legion100`**. It preserves the public procurement workspace and four Netlify Functions, and adds a private demo access gate to the NIM endpoint. It does not run the 100 agents, engineer/supplier attestations or payment gateway.
+Public visitors upload a BOM or select the sample and press **Review component list with AI**. No API keys or access codes are collected from customers.
 
-## Browser-only deployment (no scripts)
+The Netlify Function `nim-review.mjs` serves `/api/nim-review`, uses `NIM_API_KEY` or `NVIDIA_API_KEY` exclusively server-side, and applies Netlify Free's code-based per-IP/domain rate limit (2 requests/180s). Cost is further bounded per request by 25 BOM lines, 12k characters, 25s upstream timeout, and `max_tokens=256`. This is **not** a global shared spending cap; distributed callers and the provider's own quotas are not fully controlled. Configure provider billing hard limits as required by your account.
 
-1. Netlify dashboard > Projects > legion100 > Deploys: upload the extracted `LEGION_NETLIFY_DEPLOY_003` folder (with `netlify.toml`, `public/`, and `netlify/functions/` at the same directory level). Confirm Functions shows four functions after deploy.
-2. Netlify > Project configuration > Environment variables > Add variables (Production and Functions scope):
-   - `NVIDIA_API_KEY`: your actual NVIDIA NIM API key, mark secret;
-   - `NIM_MODEL`: a model ID enabled for your account, not a guessed name;
-   - `LEGION_NIM_DEMO_ENABLED`: `true`;
-   - `LEGION_NIM_DEMO_ACCESS_TOKEN`: a unique high-entropy passphrase **at least 32 characters**, mark secret; do not copy this token into code or share it. Use your password manager to create the value.
-   - `NIM_API_URL`: optional, only if your NIM endpoint is not the default `https://integrate.api.nvidia.com/v1/chat/completions`.
-3. Save variables, then **redeploy** the same folder. Netlify locks env vars per deploy. Do not publish `.env` or API keys in the `public/` folder.
-4. Open https://legion100.netlify.app/.netlify/functions/status — expect `nim_ready:true`; this proves configuration only. On the site, upload a BOM CSV or annotated DXF, enter the **private demo code** into the small field and press `Ask connected NIM`. The model reply is **advisory**, admission stays `Z`.
-5. Netlify > Functions > `nim-review` > Logs should record an invocation without exposing the secret. Remove or rotate the NIM key and demo token after filming.
+The private `LEGION_NIM_DEMO_ACCESS_TOKEN` can be deleted from Netlify; it is ignored. `LEGION_NIM_DEMO_ENABLED` remains a server-side enable/disable switch.
 
-## Safety
+Data returned by NIM is advisory. No ZTL certificate, supplier verification, 100-agent run or PayPal capture is claimed.
 
-- This function is intentionally usable only by people who know the demo access token; it has no full identity/tenant model or persistent quota limiter. Use only for a short private hackathon demo, and configure provider spending limits. A public website does not by itself authorize public inference spending.
-- Payment remains disabled and no suppliers or 100-agent runtime are connected. The UI cannot truthfully say orders were placed without per-line supplier acknowledgments and independent engineering/verifier receipts.
-- Service can return `nim_ready:true` with wrong model ID, exhausted quota or unreachable upstream; only a real POST and NIM response establish runtime success.
-
-## Tests
-
-`node test-functions.mjs` and `node test-secure-nim.mjs`. Secret never travels in deployed static assets; the browser input is volatile and not persisted.
+Run `node test-customer-nim.mjs` to test the HTTP handler in isolation with mocked NVIDIA upstream; test does not prove live NVIDIA inference.

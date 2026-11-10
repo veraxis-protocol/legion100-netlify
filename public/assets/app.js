@@ -167,12 +167,11 @@
   $('nimReview').addEventListener('click',async()=>{
     if(!current||!current.parts.length){set('nimResult','Upload an annotated BOM first.');return}
     if(!runtime.nim_ready){set('nimResult','NIM unavailable. A server-side API key is required; never put it in this page.');return}
-    const demoCode=$('demoAccessCode').value.trim();
-    if(demoCode.length<32){set('nimResult','Enter the private demo code (32+ characters). It is used only for this request.');return}
     set('nimResult','Requesting a non-binding preliminary review…');
     try{
-      const res=await fetch('/.netlify/functions/nim-review',{method:'POST',headers:{'content-type':'application/json','authorization':'Bearer '+demoCode},body:JSON.stringify({parts:current.parts.slice(0,25),drawing_sha256:current.digest})});
-      const data=await res.json();if(!res.ok)throw new Error(data.error||'NIM request failed');
+      const res=await fetch('/api/nim-review',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({parts:current.parts.slice(0,25),drawing_sha256:current.digest})});
+      const data=await res.json().catch(()=>({}));
+      if(!res.ok)throw new Error(res.status===429?'Review request limit reached. Please try again later.':data.error||'NIM request failed');
       set('nimResult','NIM advisory only (not engineering admission): '+String(data.review||'No review returned').slice(0,600))
     }catch(err){set('nimResult','NIM not connected: '+String(err.message||err).slice(0,200))}
   });

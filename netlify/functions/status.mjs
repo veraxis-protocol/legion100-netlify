@@ -1,11 +1,11 @@
 export default async (request) => {
   if (request.method !== 'GET') return Response.json({error:'Method not allowed'}, {status:405});
-  // Diagnostic flags only. No key, token, model ID or other value is disclosed.
+  // The customer-facing API no longer asks for a token. These checks are
+  // configuration presence only, NOT proof of a successful NVIDIA inference.
   const checks = {
     enabled_exactly_true: process.env.LEGION_NIM_DEMO_ENABLED === 'true',
     nvidia_api_key_present: Boolean(process.env.NVIDIA_API_KEY || process.env.NIM_API_KEY),
-    nim_model_present: Boolean(process.env.NIM_MODEL),
-    demo_token_at_least_32: Boolean(process.env.LEGION_NIM_DEMO_ACCESS_TOKEN && process.env.LEGION_NIM_DEMO_ACCESS_TOKEN.length >= 32)
+    nim_model_present: Boolean(process.env.NIM_MODEL)
   };
   return Response.json({
     service:'legion-netlify',state:'NO_LIVE_ADMISSION_CLAIM',
