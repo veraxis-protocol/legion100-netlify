@@ -9,3 +9,6 @@ The private `LEGION_NIM_DEMO_ACCESS_TOKEN` can be deleted from Netlify; it is ig
 Data returned by NIM is advisory. No ZTL certificate, supplier verification, 100-agent run or PayPal capture is claimed.
 
 Run `node test-customer-nim.mjs` to test the HTTP handler in isolation with mocked NVIDIA upstream; test does not prove live NVIDIA inference.
+
+## v005 — one-click AI review visible on landing
+The landing button **Review sample with AI** immediately opens the sample BOM and sends one token-free request to `/api/nim-review`; the review is visible in Engineering review. For a user-uploaded BOM, the in-workspace **Review component list with AI** button remains available. Netlify server-side credentials only. No claim of formal engineering admission or real sourcing.

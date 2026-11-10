@@ -152,7 +152,7 @@
   }
   function choose(){html.file.click()}
   for (const id of ['uploadHero','navstart'])$(id).addEventListener('click',choose);
-  $('trydemo').addEventListener('click',()=>openCurrent(structuredClone(sample)));
+  $('trydemo').addEventListener('click',()=>{openCurrent(structuredClone(sample));void requestNimReview()});
   html.file.addEventListener('change',()=>fileChosen(html.file.files?.[0]));
   ['dragenter','dragover'].forEach(e=>html.box.addEventListener(e,ev=>{ev.preventDefault();html.box.style.background='#eaf1ff'}));
   ['dragleave','drop'].forEach(e=>html.box.addEventListener(e,ev=>{ev.preventDefault();html.box.style.background='';if(e==='drop')fileChosen(ev.dataTransfer.files?.[0])}));
@@ -164,17 +164,37 @@
       notice:'This is a local draft. No supplier, PayPal or agent execution has been contacted.'};
     const blob=new Blob([JSON.stringify(data,null,2)],{type:'application/json'}),url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download='LEGION_REQUEST_DRAFT_'+c.id+'.json';a.click();setTimeout(()=>URL.revokeObjectURL(url),1500)
   });
-  $('nimReview').addEventListener('click',async()=>{
+  let nimPending=false;
+  async function requestNimReview(){
+    if(nimPending)return;
     if(!current||!current.parts.length){set('nimResult','Upload an annotated BOM first.');return}
-    if(!runtime.nim_ready){set('nimResult','NIM unavailable. A server-side API key is required; never put it in this page.');return}
+    const requestId=current.id;
+    nimPending=true;
+    $('nimReview').disabled=true;
+    $('trydemo').disabled=true;
+    set('heroAiStatus','Reviewing the sample with NVIDIA NIM…');
     set('nimResult','Requesting a non-binding preliminary review…');
+    $('nimReview').scrollIntoView({behavior:'smooth',block:'center'});
     try{
       const res=await fetch('/api/nim-review',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({parts:current.parts.slice(0,25),drawing_sha256:current.digest})});
       const data=await res.json().catch(()=>({}));
       if(!res.ok)throw new Error(res.status===429?'Review request limit reached. Please try again later.':data.error||'NIM request failed');
-      set('nimResult','NIM advisory only (not engineering admission): '+String(data.review||'No review returned').slice(0,600))
-    }catch(err){set('nimResult','NIM not connected: '+String(err.message||err).slice(0,200))}
-  });
+      if(!current||current.id!==requestId)return;
+      set('nimResult','NIM advisory only (not engineering admission): '+String(data.review||'No review returned').slice(0,600));
+      set('heroAiStatus','AI review received. Engineering admission remains pending.');
+    }catch(err){
+      if(current&&current.id===requestId){
+        const message=String(err.message||err).slice(0,200);
+        set('nimResult','AI review unavailable: '+message);
+        set('heroAiStatus','AI review unavailable: '+message);
+      }
+    }finally{
+      nimPending=false;
+      $('nimReview').disabled=false;
+      $('trydemo').disabled=false;
+    }
+  }
+  $('nimReview').addEventListener('click',()=>{void requestNimReview()});
   async function checkServices(){
     try{
       const c=new AbortController();const t=setTimeout(()=>c.abort(),1600);
@@ -183,7 +203,6 @@
       runtime={...runtime,...dat};
       $('runtimeDot').classList.add('live');set('runtimeText',dat.nim_ready||dat.engineering_backend_ready?'Secure services available · live activity requires verified receipts':'Public website live · source verification, NIM and payments not configured');
     }catch{set('runtimeText','Site ready on Netlify Drop · interactive intake available · live agents and PayPal require backend deployment')}
-    if(current)render();
   }
   checkServices();
 })();
