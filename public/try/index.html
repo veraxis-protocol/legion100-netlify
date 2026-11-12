@@ -1,32 +1,41 @@
 <!doctype html>
 <html lang="en">
 <head>
- <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
- <meta name="theme-color" content="#f6f8fb">
- <meta name="description" content="Try LEGION: from real engineering requirements and purchasing vectors to a separately verified coalition and PayPal Sandbox replay.">
- <title>Try LEGION — Engineering intent to verified commerce</title>
- <link rel="stylesheet" href="./try.css">
- <link rel="stylesheet" href="./try-interactive.css">
- <script defer src="./try.js"></script>
- <script defer src="./try-interactive.js"></script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#f7f9fc">
+  <meta name="description" content="Try LEGION's evidence-bound procurement workspace: choose a real CAD component, inspect a purchasing vector and engineering hold, then explore separate recorded commerce and PayPal Sandbox evidence.">
+  <title>Try LEGION — Procurement Workspace</title>
+  <link rel="stylesheet" href="./try-living.css">
+  <script defer src="./try-living.js"></script>
 </head>
 <body>
-<header class="nav"><a class="logo" href="/" aria-label="LEGION home"><span class="symbol">⌁</span> LEGION<span class="logo-dot">.</span></a><span class="nav-right"><span class="run-pill">NO LIVE TRANSACTIONS</span> <a href="https://github.com/veraxis-protocol/LEGION-Deal-Rescue" target="_blank" rel="noreferrer">View the code ↗</a></span></header>
-<main class="wrap">
- <div class="topline">INTERACTIVE JUDGE EXPERIENCE <span class="slash">/</span> PINNED EVIDENCE SNAPSHOT</div>
- <section class="intro"><div><h1>From engineering intent<br>to <em>verified commerce.</em></h1><p>See what LEGION can extract, what it cannot yet approve, and how a separate recorded coalition created a payable deal. No signup, API keys, or charges.</p></div><div class="intro-metric"><strong>40<span>/40</span></strong><span>Real CAD BOM positions matched</span><small>Independent engineering admission remains <b>Z / OPEN</b></small></div></section>
- <div class="case-notice" role="note"><span class="notice-symbol">i</span><p><strong>Two evidence-separated cases.</strong> CASE A is real reBot engineering computed during a pinned local run; its procurement is blocked. CASE B is a separate synthetic commercial scenario with recorded PayPal Sandbox payments. <strong>They are not one transaction.</strong></p></div>
- <nav class="steps" aria-label="Try LEGION stages">
-  <button data-stage="0" class="step active"><span>01</span><strong>Drawing</strong></button>
-  <button data-stage="1" class="step"><span>02</span><strong>Parts</strong></button>
-  <button data-stage="2" class="step"><span>03</span><strong>LEGION at work</strong></button>
-  <button data-stage="3" class="step"><span>04</span><strong>Review</strong></button>
-  <button data-stage="4" class="step"><span>05</span><strong>PayPal</strong></button>
- </nav>
- <div id="loadError" hidden role="alert"></div>
- <div id="stageContent" aria-live="polite"><div class="loading">Loading the pinned evidence snapshot…</div></div>
- <div class="below"><div><span class="mini-label">WHY THESE GATES MATTER</span><p>Finding a feasible match is not permission to buy. The original engineering requirements, each buyer's authority and the confirmed payment must all refer to the same current contract.</p></div><a href="https://github.com/veraxis-protocol/LEGION-Deal-Rescue/blob/main/DEMO_GUIDE.md" target="_blank" rel="noreferrer">Run the independent local Judge ↗</a></div>
+<header class="app-topbar">
+  <a class="brand" href="/" aria-label="LEGION home"><span class="brand-mark">⌁</span>LEGION<span class="brand-point">.</span></a>
+  <span class="app-subbrand">Procurement workspace <span class="top-divider">/</span> Interactive demonstration</span>
+  <span class="top-status"><span class="status-dot"></span> READ-ONLY · NO LIVE CHARGES</span>
+</header>
+<main class="app-shell" id="app">
+  <div class="workspace-intro">
+    <div class="workspace-location"><span class="tiny-line"></span> NEW WORKSPACE <span class="muted">/ EVIDENCE-BOUND SESSION</span></div>
+    <h1 id="workspaceTitle">What do you need to make?</h1>
+    <p id="workspaceSubtitle">Start with an engineering component. LEGION shows what can—and cannot—become a purchase.</p>
+  </div>
+  <nav class="journey" aria-label="LEGION workflow stages">
+    <button class="journey-step active" data-stage="0" aria-current="step"><span class="journey-number">01</span><span class="journey-name">Drawing</span><span class="journey-dot"></span></button>
+    <button class="journey-step" data-stage="1" disabled><span class="journey-number">02</span><span class="journey-name">Vector</span><span class="journey-dot"></span></button>
+    <button class="journey-step" data-stage="2" disabled><span class="journey-number">03</span><span class="journey-name">LEGION at work</span><span class="journey-dot"></span></button>
+    <button class="journey-step" data-stage="3" disabled><span class="journey-number">04</span><span class="journey-name">Deal</span><span class="journey-dot"></span></button>
+    <button class="journey-step" data-stage="4" disabled><span class="journey-number">05</span><span class="journey-name">PayPal</span><span class="journey-dot"></span></button>
+  </nav>
+  <div id="loadError" class="error-card" role="alert" hidden></div>
+  <div id="workspace" class="workspace" hidden>
+    <aside class="intent-rail" aria-label="Active work object"><div id="intentRail"></div></aside>
+    <section class="work-canvas" aria-label="LEGION work area"><div id="workCanvas" aria-live="polite"></div></section>
+    <aside class="decision-rail" aria-label="Result and supporting evidence"><div id="decisionRail"></div></aside>
+  </div>
+  <div class="loading" id="loading" role="status"><span class="loading-orbit"></span> Loading source-bound engineering evidence…</div>
+  <footer class="site-footer"><span>LEGION · An executable demonstration of evidence-based decisions</span><a href="https://github.com/veraxis-protocol/LEGION-Deal-Rescue" target="_blank" rel="noopener noreferrer">Source and independent tests ↗</a></footer>
 </main>
-<footer><div class="wrap foot"><span>⌁ LEGION · Source-bound demonstration</span><span id="sourceStamp">No request or payment is created here.</span></div></footer>
 </body>
 </html>

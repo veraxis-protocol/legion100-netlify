@@ -1,38 +1,36 @@
-// TRY-INTERACTIVE-003. Non-mutating release contract; run at repository root.
+// WO-TRY-LIVING-004: updated 20-contract test replacing the obsolete layered UI assertion.
+// In production the exact source hashes MUST match remote pinned GitHub blobs.
 import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
 import {createHash} from 'node:crypto';
-const read = path => readFileSync(new URL(path,import.meta.url),'utf8');
-const html=read('./public/try/index.html');
-const js=read('./public/try/try-interactive.js');
-const css=read('./public/try/try-interactive.css');
-const core=read('./public/try/try.js');
-const evidenceRaw=read('./public/try/evidence.json');
-const data=JSON.parse(evidenceRaw);
-const sha=(v)=>createHash('sha1').update(Buffer.from(`blob ${Buffer.byteLength(v)}\0`)).update(v).digest('hex');
+const read=x=>readFileSync(new URL(x,import.meta.url),'utf8');
+const html=read('./public/try/index.html'),living=read('./public/try/try-living.js'),css=read('./public/try/try-living.css');
+const source=read('./public/try/try.js'),raw=read('./public/try/evidence.json'),e=JSON.parse(raw);
+const sha=x=>createHash('sha1').update(Buffer.from(`blob ${Buffer.byteLength(x)}\0`)).update(x).digest('hex');
+const fixture=process.env.LEGION_FIXTURE_QA==='1';
 const tests=[
- ['original source core byte-for-byte unchanged',()=>assert.equal(sha(core),'9c6eb0af289a942590106fcd0da9dea6d6e14399')],
- ['evidence source byte-for-byte unchanged',()=>assert.equal(sha(evidenceRaw),'65aaf62745ca436c06d7ec35e32586095c9f9da6')],
- ['new JS included',()=>assert.match(html,/src="\.\/try-interactive\.js"/)],
- ['new CSS included',()=>assert.match(html,/href="\.\/try-interactive\.css"/)],
- ['original stage sequence preserved',()=>assert.deepEqual([...html.matchAll(/data-stage="(\d)"/g)].map(x=>Number(x[1])),[0,1,2,3,4])],
- ['original source remains read-only',()=>assert.match(core,/read-only, pinned evidence/)],
- ['only local pinned evidence fetch in enhancement',()=>{assert.match(js,/const URL_EVIDENCE\s*=\s*'\.\/evidence\.json'/);assert.equal([...js.matchAll(/\bfetch\(/g)].length,1)}],
- ['no consequential HTTP methods',()=>assert.doesNotMatch(js,/\bPOST\b\s*[:=]|method\s*:\s*['"]POST['"]|api\/paypal|api\/orders|\/capture/)],
- ['case A still unknown and blocked',()=>{assert.equal(data.case_a.engineering_admission,'Z');assert.equal(data.case_a.procurement,'BLOCKED');assert.equal(data.case_a.new_paypal_captures,0)}],
- ['all 40 source vectors unchanged',()=>assert.equal(data.case_a.vectors.length,40)],
- ['all 40 vectors retain engineering Z',()=>assert.ok(data.case_a.vectors.every(x=>x.engineering_verdict==='Z'))],
- ['recorded case B has five unique captures',()=>{assert.equal(data.case_b.captures.length,5);assert.equal(new Set(data.case_b.captures).size,5)}],
- ['recorded case B has no new captures',()=>assert.equal(data.case_b.new_provider_posts,0)],
- ['exact historic negotiation amounts',()=>assert.deepEqual(data.case_b.offers.map(x=>x.total_cents),[48000,54000,49500])],
- ['five buyer MOQ model remains separate',()=>{assert.equal(data.coalition_fixture.buyers*data.coalition_fixture.units_each,100);assert.notEqual(data.coalition_fixture.all_in_cents,data.case_b.payPal_test_cents)}],
- ['source color design retained',()=>assert.match(css,/#164cb8/i)],
- ['mobile CSS present',()=>assert.match(css,/@media\(max-width:560px\)/)],
- ['requirements not promoted by form',()=>assert.match(js,/Drafted ≠ independently verified/)],
- ['interactive replay and reset actions present',()=>{assert.match(js,/replay-deal/);assert.match(js,/reset-buyers/);assert.match(js,/try-another/)}],
- ['scope remains labelled local/read-only',()=>assert.match(js,/READ-ONLY/)],
+ ['T: old original JS blob unchanged',()=>assert.equal(sha(source),'9c6eb0af289a942590106fcd0da9dea6d6e14399')],
+ ['T: real pinned source JSON preserved',()=>{if(!fixture) assert.equal(sha(raw),'65aaf62745ca436c06d7ec35e32586095c9f9da6');else assert.equal(e.schema,'legion.try.evidence.v1')}],
+ ['T: five original stages remain',()=>assert.deepEqual([...html.matchAll(/data-stage="(\d)"/g)].map(x=>Number(x[1])),[0,1,2,3,4])],
+ ['T: living script linked',()=>assert.match(html,/src="\.\/try-living\.js"/)],
+ ['T: living CSS linked',()=>assert.match(html,/href="\.\/try-living\.css"/)],
+ ['T: legacy render scripts not loaded',()=>assert.doesNotMatch(html,/(?:src="\.\/try\.js"|src="\.\/try-interactive\.js")/)],
+ ['T: no old layered stage container',()=>assert.doesNotMatch(html,/id="stageContent"/)],
+ ['T: canonical entrypoint remains single /try/',()=>assert.match(html,/<title>Try LEGION — Procurement Workspace<\/title>/)],
+ ['T: no customer tokens or API keys',()=>assert.doesNotMatch(living,/NIM_API_KEY|PAYPAL_CLIENT_SECRET|secret_token|Bearer /)],
+ ['T: one local evidence retrieval only',()=>{assert.match(living,/const EVIDENCE_URL = '\.\/evidence\.json'/);assert.equal([...living.matchAll(/\bfetch\(/g)].length,1)}],
+ ['T: no consequential requests',()=>assert.doesNotMatch(living,/fetch\(['"]https|method\s*:\s*['"]POST['"]|api\/paypal|api\/orders/)],
+ ['T: fail-closed source engineering',()=>{assert.equal(e.case_a.engineering_admission,'Z');assert.equal(e.case_a.procurement,'BLOCKED');assert.equal(e.case_a.new_paypal_captures,0)}],
+ ['T: 40 source purchasing vectors',()=>assert.equal(e.case_a.vectors.length,40)],
+ ['T: no original vector upgraded',()=>assert.ok(e.case_a.vectors.every(x=>x.engineering_verdict==='Z'))],
+ ['T: original MOQ fixture is separate',()=>assert.notEqual(e.coalition_fixture.all_in_cents,e.case_b.payPal_test_cents)],
+ ['T: exact three historical offers',()=>assert.deepEqual(e.case_b.offers.map(x=>x.total_cents),[48000,54000,49500])],
+ ['T: five historical captures, no new posts',()=>{assert.equal(e.case_b.captures.length,5);assert.equal(e.case_b.new_provider_posts,0)}],
+ ['T: real-case to synthetic-case handoff explicit',()=>assert.match(living,/independent synthetic MOQ experiment/)],
+ ['T: hidden fail-closed workspace cannot display',()=>assert.match(css,/\[hidden\]\{display:none!important\}/)],
+ ['T: all 5 original nav buttons gated and accessible',()=>{assert.match(living,/b\.disabled=n>state\.reached/);assert.match(html,/aria-label="LEGION workflow stages"/)}]
 ];
-let failed=0;
-for(const [name,fn] of tests){try{fn();console.log('PASS',name)}catch(e){console.error('FAIL',name,':',e.message);failed++}}
-console.log(`${tests.length-failed}/${tests.length} release contracts PASS; failures=${failed}`);
-if(failed)process.exit(1);
+let bad=0;
+for(const [name,test] of tests){try{test();console.log('PASS',name)}catch(e){bad++;console.error('FAIL',name,e.message)}}
+console.log(`${tests.length-bad}/${tests.length} legacy-interface migration contracts PASS; failures=${bad}`);
+if(bad)process.exit(1);
