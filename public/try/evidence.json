@@ -1,0 +1,958 @@
+{
+ "schema": "legion.try.evidence.v1",
+ "source_scope": "2026-11-12 JUDGE_E2E_001 / pinned clean clone; this is a read-only summary, not new live CAD processing",
+ "source": {
+  "repo": "https://github.com/veraxis-protocol/LEGION-Deal-Rescue",
+  "commit": "2cc7dbdc2b305d92b4fd64614c74bc56b16c4cfe",
+  "judge_manifest_sha256": "4b4620fdeedc67115915b97a254baf77b080739b7c48258408b3569c2fa9756c",
+  "cad_sha256": "a1e301ee03d46589e26d3fc2272d19ba53c1878f0104274695e5c9a88aa512d2",
+  "bom_digest": "02730d7ad0e6333070fe51e29d6b9f29e3c13ef166a0d82b4e6c37d214030312",
+  "requirements_digest": "b8281a214b2e35833dfa228731e855797be334c188e7bb1cc67cac12f0488278",
+  "evidence_guide": "https://github.com/veraxis-protocol/LEGION-Deal-Rescue/blob/2cc7dbdc2b305d92b4fd64614c74bc56b16c4cfe/DEMO_GUIDE.md",
+  "bom_readme": "https://github.com/Seeed-Projects/reBot-DevArm/blob/22f002a230670f96abcd3805e0daa63bdf42f354/hardware/reBot_B601_DM/readme.md",
+  "cad_source": "https://github.com/Seeed-Projects/reBot-DevArm/blob/22f002a230670f96abcd3805e0daa63bdf42f354/hardware/reBot_B601_DM/reBot_B601_DM_v1.1_20260625.step"
+ },
+ "case_a": {
+  "type": "CASE A · REAL CAD · computed in pinned local run (not on this webpage)",
+  "drawing": "reBot_B601_DM_v1.1_20260625.step",
+  "drawing_bytes": 34840241,
+  "subassemblies": 33,
+  "part_definitions": 64,
+  "part_instances": 326,
+  "matched_bom_positions": 40,
+  "required_bom_positions": 40,
+  "matched_bom_instances": 53,
+  "required_bom_instances": 53,
+  "ztl_production": "OPEN",
+  "rail_tolerance": "Z",
+  "joint2_load_torque": "OPEN",
+  "engineering_admission": "Z",
+  "procurement": "BLOCKED",
+  "rfq": "DRAFT_NOT_SENT",
+  "new_paypal_captures": 0,
+  "source_note": "ZTL Engineer/Stand executes; real reBot source does not supply all required engineering facts. Neither a purchasing permit nor a quote is inferred.",
+  "vectors": [
+   {
+    "part_id": "01_BASE_PLATE",
+    "qty": 1,
+    "material": "Bambu ABS Black",
+    "process": "FDM 3D printing (0.4 nozzle, 0.2 layer height, 30% infill)",
+    "geometry_bbox_mm": [
+     140.001,
+     200.001,
+     14.754
+    ],
+    "tolerance": null,
+    "missing": [
+     "dimensional_tolerances",
+     "material_grade_certificate",
+     "surface_finish_per_part",
+     "inspection_requirements",
+     "functional_requirements"
+    ],
+    "engineering_verdict": "Z",
+    "source_geometry_sha256": "a1e301ee03d46589e26d3fc2272d19ba53c1878f0104274695e5c9a88aa512d2",
+    "source_requirements_sha256": "6776445eb8f994fdfea0897626fc3b2ae021d22b7ec82940b9313d021e26dcee"
+   },
+   {
+    "part_id": "01_BASE_LINK",
+    "qty": 1,
+    "material": "Bambu ABS Black",
+    "process": "FDM 3D printing (0.4 nozzle, 0.2 layer height, 30% infill)",
+    "geometry_bbox_mm": [
+     92,
+     92,
+     63.7
+    ],
+    "tolerance": null,
+    "missing": [
+     "dimensional_tolerances",
+     "material_grade_certificate",
+     "surface_finish_per_part",
+     "inspection_requirements",
+     "functional_requirements"
+    ],
+    "engineering_verdict": "Z",
+    "source_geometry_sha256": "a1e301ee03d46589e26d3fc2272d19ba53c1878f0104274695e5c9a88aa512d2",
+    "source_requirements_sha256": "6776445eb8f994fdfea0897626fc3b2ae021d22b7ec82940b9313d021e26dcee"
+   },
+   {
+    "part_id": "01_UPPER_ARM_FULLER_L",
+    "qty": 1,
+    "material": "Bambu PLA Black & Green",
+    "process": "FDM 3D printing (0.4 nozzle, 0.2 layer height, 15% infill)",
+    "geometry_bbox_mm": [
+     20.616,
+     133.65,
+     34.616
+    ],
+    "tolerance": null,
+    "missing": [
+     "dimensional_tolerances",
+     "material_grade_certificate",
+     "surface_finish_per_part",
+     "inspection_requirements",
+     "functional_requirements"
+    ],
+    "engineering_verdict": "Z",
+    "source_geometry_sha256": "a1e301ee03d46589e26d3fc2272d19ba53c1878f0104274695e5c9a88aa512d2",
+    "source_requirements_sha256": "6776445eb8f994fdfea0897626fc3b2ae021d22b7ec82940b9313d021e26dcee"
+   },
+   {
+    "part_id": "01_UPPER_ARM_FULLER_R",
+    "qty": 1,
+    "material": "Bambu PLA Black & Green",
+    "process": "FDM 3D printing (0.4 nozzle, 0.2 layer height, 15% infill)",
+    "geometry_bbox_mm": [
+     20.616,
+     133.65,
+     34.616
+    ],
+    "tolerance": null,
+    "missing": [
+     "dimensional_tolerances",
+     "material_grade_certificate",
+     "surface_finish_per_part",
+     "inspection_requirements",
+     "functional_requirements"
+    ],
+    "engineering_verdict": "Z",
+    "source_geometry_sha256": "a1e301ee03d46589e26d3fc2272d19ba53c1878f0104274695e5c9a88aa512d2",
+    "source_requirements_sha256": "6776445eb8f994fdfea0897626fc3b2ae021d22b7ec82940b9313d021e26dcee"
+   },
+   {
+    "part_id": "01_UPPER_ARM_FULLER_M",
+    "qty": 1,
+    "material": "Bambu ABS Black",
+    "process": "FDM 3D printing (0.4 nozzle, 0.2 layer height, 30% infill)",
+    "geometry_bbox_mm": [
+     59.35,
+     189.933,
+     53.6
+    ],
+    "tolerance": null,
+    "missing": [
+     "dimensional_tolerances",
+     "material_grade_certificate",
+     "surface_finish_per_part",
+     "inspection_requirements",
+     "functional_requirements"
+    ],
+    "engineering_verdict": "Z",
+    "source_geometry_sha256": "a1e301ee03d46589e26d3fc2272d19ba53c1878f0104274695e5c9a88aa512d2",
+    "source_requirements_sha256": "6776445eb8f994fdfea0897626fc3b2ae021d22b7ec82940b9313d021e26dcee"
+   },
+   {
+    "part_id": "01_UPPER_ARM_LIMIT",
+    "qty": 1,
+    "material": "Bambu ABS Black",
+    "process": "FDM 3D printing (0.4 nozzle, 0.2 layer height, 30% infill)",
+    "geometry_bbox_mm": [
+     71.24,
+     21.193,
+     17.842
+    ],
+    "tolerance": null,
+    "missing": [
+     "dimensional_tolerances",
+     "material_grade_certificate",
+     "surface_finish_per_part",
+     "inspection_requirements",
+     "functional_requirements"
+    ],
+    "engineering_verdict": "Z",
+    "source_geometry_sha256": "a1e301ee03d46589e26d3fc2272d19ba53c1878f0104274695e5c9a88aa512d2",
+    "source_requirements_sha256": "6776445eb8f994fdfea0897626fc3b2ae021d22b7ec82940b9313d021e26dcee"
+   },
+   {
+    "part_id": "01_ARM_HANDLE",
+    "qty": 1,
+    "material": "Bambu ABS Black",
+    "process": "FDM 3D printing (0.4 nozzle, 0.2 layer height, 30% infill)",
+    "geometry_bbox_mm": [
+     65.206,
+     26.617,
+     23.211
+    ],
+    "tolerance": null,
+    "missing": [
+     "dimensional_tolerances",
+     "material_grade_certificate",
+     "surface_finish_per_part",
+     "inspection_requirements",
+     "functional_requirements"
+    ],
+    "engineering_verdict": "Z",
+    "source_geometry_sha256": "a1e301ee03d46589e26d3fc2272d19ba53c1878f0104274695e5c9a88aa512d2",
+    "source_requirements_sha256": "6776445eb8f994fdfea0897626fc3b2ae021d22b7ec82940b9313d021e26dcee"
+   },
+   {
+    "part_id": "01_LOWER_ARM_FILLER_L",
+    "qty": 1,
+    "material": "Bambu PLA Black & Green",
+    "process": "FDM 3D printing (0.4 nozzle, 0.2 layer height, 15% infill)",
+    "geometry_bbox_mm": [
+     18.916,
+     125.051,
+     31.603
+    ],
+    "tolerance": null,
+    "missing": [
+     "dimensional_tolerances",
+     "material_grade_certificate",
+     "surface_finish_per_part",
+     "inspection_requirements",
+     "functional_requirements"
+    ],
+    "engineering_verdict": "Z",
+    "source_geometry_sha256": "a1e301ee03d46589e26d3fc2272d19ba53c1878f0104274695e5c9a88aa512d2",
+    "source_requirements_sha256": "6776445eb8f994fdfea0897626fc3b2ae021d22b7ec82940b9313d021e26dcee"
+   },
+   {
+    "part_id": "01_LOWER_ARM_FILLER_R",
+    "qty": 1,
+    "material": "Bambu PLA Black & Green",
+    "process": "FDM 3D printing (0.4 nozzle, 0.2 layer height, 15% infill)",
+    "geometry_bbox_mm": [
+     18.916,
+     125.051,
+     31.603
+    ],
+    "tolerance": null,
+    "missing": [
+     "dimensional_tolerances",
+     "material_grade_certificate",
+     "surface_finish_per_part",
+     "inspection_requirements",
+     "functional_requirements"
+    ],
+    "engineering_verdict": "Z",
+    "source_geometry_sha256": "a1e301ee03d46589e26d3fc2272d19ba53c1878f0104274695e5c9a88aa512d2",
+    "source_requirements_sha256": "6776445eb8f994fdfea0897626fc3b2ae021d22b7ec82940b9313d021e26dcee"
+   },
+   {
+    "part_id": "01_LOWER_ARM_FILLER_M",
+    "qty": 1,
+    "material": "Bambu ABS Black",
+    "process": "FDM 3D printing (0.4 nozzle, 0.2 layer height, 30% infill)",
+    "geometry_bbox_mm": [
+     63.85,
+     194.395,
+     38.6
+    ],
+    "tolerance": null,
+    "missing": [
+     "dimensional_tolerances",
+     "material_grade_certificate",
+     "surface_finish_per_part",
+     "inspection_requirements",
+     "functional_requirements"
+    ],
+    "engineering_verdict": "Z",
+    "source_geometry_sha256": "a1e301ee03d46589e26d3fc2272d19ba53c1878f0104274695e5c9a88aa512d2",
+    "source_requirements_sha256": "6776445eb8f994fdfea0897626fc3b2ae021d22b7ec82940b9313d021e26dcee"
+   },
+   {
+    "part_id": "01_UPPER_ARM_COVER",
+    "qty": 1,
+    "material": "Bambu PLA Green",
+    "process": "FDM 3D printing (0.4 nozzle, 0.2 layer height, 15% infill)",
+    "geometry_bbox_mm": [
+     58.322,
+     73.826,
+     24.943
+    ],
+    "tolerance": null,
+    "missing": [
+     "dimensional_tolerances",
+     "material_grade_certificate",
+     "surface_finish_per_part",
+     "inspection_requirements",
+     "functional_requirements"
+    ],
+    "engineering_verdict": "Z",
+    "source_geometry_sha256": "a1e301ee03d46589e26d3fc2272d19ba53c1878f0104274695e5c9a88aa512d2",
+    "source_requirements_sha256": "6776445eb8f994fdfea0897626fc3b2ae021d22b7ec82940b9313d021e26dcee"
+   },
+   {
+    "part_id": "01_LOWER_ARM_COVER",
+    "qty": 1,
+    "material": "Bambu PLA Green",
+    "process": "FDM 3D printing (0.4 nozzle, 0.2 layer height, 15% infill)",
+    "geometry_bbox_mm": [
+     67.35,
+     100.838,
+     27.729
+    ],
+    "tolerance": null,
+    "missing": [
+     "dimensional_tolerances",
+     "material_grade_certificate",
+     "surface_finish_per_part",
+     "inspection_requirements",
+     "functional_requirements"
+    ],
+    "engineering_verdict": "Z",
+    "source_geometry_sha256": "a1e301ee03d46589e26d3fc2272d19ba53c1878f0104274695e5c9a88aa512d2",
+    "source_requirements_sha256": "6776445eb8f994fdfea0897626fc3b2ae021d22b7ec82940b9313d021e26dcee"
+   },
+   {
+    "part_id": "01_MOTOR_COVER",
+    "qty": 1,
+    "material": "Bambu ABS Black",
+    "process": "FDM 3D printing (0.4 nozzle, 0.2 layer height, 30% infill)",
+    "geometry_bbox_mm": [
+     63.079,
+     94.822,
+     33.838
+    ],
+    "tolerance": null,
+    "missing": [
+     "dimensional_tolerances",
+     "material_grade_certificate",
+     "surface_finish_per_part",
+     "inspection_requirements",
+     "functional_requirements"
+    ],
+    "engineering_verdict": "Z",
+    "source_geometry_sha256": "a1e301ee03d46589e26d3fc2272d19ba53c1878f0104274695e5c9a88aa512d2",
+    "source_requirements_sha256": "6776445eb8f994fdfea0897626fc3b2ae021d22b7ec82940b9313d021e26dcee"
+   },
+   {
+    "part_id": "01_LOWER_ARM_LIMIT",
+    "qty": 1,
+    "material": "Bambu PLA Green",
+    "process": "FDM 3D printing (0.4 nozzle, 0.2 layer height, 15% infill)",
+    "geometry_bbox_mm": [
+     40,
+     13,
+     35.934
+    ],
+    "tolerance": null,
+    "missing": [
+     "dimensional_tolerances",
+     "material_grade_certificate",
+     "surface_finish_per_part",
+     "inspection_requirements",
+     "functional_requirements"
+    ],
+    "engineering_verdict": "Z",
+    "source_geometry_sha256": "a1e301ee03d46589e26d3fc2272d19ba53c1878f0104274695e5c9a88aa512d2",
+    "source_requirements_sha256": "6776445eb8f994fdfea0897626fc3b2ae021d22b7ec82940b9313d021e26dcee"
+   },
+   {
+    "part_id": "01_RAIL_BRACKET",
+    "qty": 1,
+    "material": "Bambu PLA Green",
+    "process": "FDM 3D printing (0.4 nozzle, 0.2 layer height, 15% infill)",
+    "geometry_bbox_mm": [
+     184.07,
+     30,
+     68.066
+    ],
+    "tolerance": null,
+    "missing": [
+     "dimensional_tolerances",
+     "material_grade_certificate",
+     "surface_finish_per_part",
+     "inspection_requirements",
+     "functional_requirements"
+    ],
+    "engineering_verdict": "Z",
+    "source_geometry_sha256": "a1e301ee03d46589e26d3fc2272d19ba53c1878f0104274695e5c9a88aa512d2",
+    "source_requirements_sha256": "6776445eb8f994fdfea0897626fc3b2ae021d22b7ec82940b9313d021e26dcee"
+   },
+   {
+    "part_id": "01_FINGER",
+    "qty": 2,
+    "material": "Bambu ABS Black",
+    "process": "FDM 3D printing (0.4 nozzle, 0.2 layer height, 45% infill)",
+    "geometry_bbox_mm": [
+     31.391,
+     39.228,
+     64.823
+    ],
+    "tolerance": null,
+    "missing": [
+     "dimensional_tolerances",
+     "material_grade_certificate",
+     "surface_finish_per_part",
+     "inspection_requirements",
+     "functional_requirements"
+    ],
+    "engineering_verdict": "Z",
+    "source_geometry_sha256": "a1e301ee03d46589e26d3fc2272d19ba53c1878f0104274695e5c9a88aa512d2",
+    "source_requirements_sha256": "6776445eb8f994fdfea0897626fc3b2ae021d22b7ec82940b9313d021e26dcee"
+   },
+   {
+    "part_id": "01_JOINT5_CABLE_RESTRAINT_A",
+    "qty": 1,
+    "material": "Bambu PLA Green",
+    "process": "FDM 3D printing (0.4 nozzle, 0.2 layer height, 15% infill)",
+    "geometry_bbox_mm": [
+     79.011,
+     17.511,
+     63.011
+    ],
+    "tolerance": null,
+    "missing": [
+     "dimensional_tolerances",
+     "material_grade_certificate",
+     "surface_finish_per_part",
+     "inspection_requirements",
+     "functional_requirements"
+    ],
+    "engineering_verdict": "Z",
+    "source_geometry_sha256": "a1e301ee03d46589e26d3fc2272d19ba53c1878f0104274695e5c9a88aa512d2",
+    "source_requirements_sha256": "6776445eb8f994fdfea0897626fc3b2ae021d22b7ec82940b9313d021e26dcee"
+   },
+   {
+    "part_id": "01_JOINT6_7_CABLE_RESTRAINT_A",
+    "qty": 2,
+    "material": "Bambu ABS Black",
+    "process": "FDM 3D printing (0.4 nozzle, 0.2 layer height, 30% infill)",
+    "geometry_bbox_mm": [
+     77.016,
+     12.437,
+     63.516
+    ],
+    "tolerance": null,
+    "missing": [
+     "dimensional_tolerances",
+     "material_grade_certificate",
+     "surface_finish_per_part",
+     "inspection_requirements",
+     "functional_requirements"
+    ],
+    "engineering_verdict": "Z",
+    "source_geometry_sha256": "a1e301ee03d46589e26d3fc2272d19ba53c1878f0104274695e5c9a88aa512d2",
+    "source_requirements_sha256": "6776445eb8f994fdfea0897626fc3b2ae021d22b7ec82940b9313d021e26dcee"
+   },
+   {
+    "part_id": "01_JOINT6_7_CABLE_RESTRAINT_B",
+    "qty": 2,
+    "material": "Bambu ABS Black",
+    "process": "FDM 3D printing (0.4 nozzle, 0.2 layer height, 30% infill)",
+    "geometry_bbox_mm": [
+     77.015,
+     21.121,
+     65.488
+    ],
+    "tolerance": null,
+    "missing": [
+     "dimensional_tolerances",
+     "material_grade_certificate",
+     "surface_finish_per_part",
+     "inspection_requirements",
+     "functional_requirements"
+    ],
+    "engineering_verdict": "Z",
+    "source_geometry_sha256": "a1e301ee03d46589e26d3fc2272d19ba53c1878f0104274695e5c9a88aa512d2",
+    "source_requirements_sha256": "6776445eb8f994fdfea0897626fc3b2ae021d22b7ec82940b9313d021e26dcee"
+   },
+   {
+    "part_id": "02_BASE_REINFORCEMENT_PART",
+    "qty": 1,
+    "material": "Aluminum Alloy 5052",
+    "process": "CNC",
+    "geometry_bbox_mm": [
+     92.005,
+     92.005,
+     6.955
+    ],
+    "tolerance": "±0.02 mm key dimensions, GB/T1840-M (readme Machining Specifications); mating parts H7 / interference fit",
+    "missing": [
+     "material_grade_certificate",
+     "surface_finish_per_part",
+     "inspection_requirements",
+     "functional_requirements"
+    ],
+    "engineering_verdict": "Z",
+    "source_geometry_sha256": "a1e301ee03d46589e26d3fc2272d19ba53c1878f0104274695e5c9a88aa512d2",
+    "source_requirements_sha256": "6776445eb8f994fdfea0897626fc3b2ae021d22b7ec82940b9313d021e26dcee"
+   },
+   {
+    "part_id": "02_ARM_YAW_LIMIT",
+    "qty": 1,
+    "material": "Aluminum Alloy 5052",
+    "process": "CNC",
+    "geometry_bbox_mm": [
+     77.002,
+     77.002,
+     7.102
+    ],
+    "tolerance": "±0.02 mm key dimensions, GB/T1840-M (readme Machining Specifications); mating parts H7 / interference fit",
+    "missing": [
+     "material_grade_certificate",
+     "surface_finish_per_part",
+     "inspection_requirements",
+     "functional_requirements"
+    ],
+    "engineering_verdict": "Z",
+    "source_geometry_sha256": "a1e301ee03d46589e26d3fc2272d19ba53c1878f0104274695e5c9a88aa512d2",
+    "source_requirements_sha256": "6776445eb8f994fdfea0897626fc3b2ae021d22b7ec82940b9313d021e26dcee"
+   },
+   {
+    "part_id": "02_MOTOR_FRONT_SPACER",
+    "qty": 4,
+    "material": "Aluminum Alloy 5052",
+    "process": "CNC",
+    "geometry_bbox_mm": [
+     34.8,
+     34.8,
+     4
+    ],
+    "tolerance": "±0.02 mm key dimensions, GB/T1840-M (readme Machining Specifications); mating parts H7 / interference fit",
+    "missing": [
+     "material_grade_certificate",
+     "surface_finish_per_part",
+     "inspection_requirements",
+     "functional_requirements"
+    ],
+    "engineering_verdict": "Z",
+    "source_geometry_sha256": "a1e301ee03d46589e26d3fc2272d19ba53c1878f0104274695e5c9a88aa512d2",
+    "source_requirements_sha256": "6776445eb8f994fdfea0897626fc3b2ae021d22b7ec82940b9313d021e26dcee"
+   },
+   {
+    "part_id": "02_MOTOR_BACK_SPACER",
+    "qty": 3,
+    "material": "Aluminum Alloy 5052",
+    "process": "CNC",
+    "geometry_bbox_mm": [
+     5,
+     57,
+     57
+    ],
+    "tolerance": "±0.02 mm key dimensions, GB/T1840-M (readme Machining Specifications); mating parts H7 / interference fit",
+    "missing": [
+     "material_grade_certificate",
+     "surface_finish_per_part",
+     "inspection_requirements",
+     "functional_requirements"
+    ],
+    "engineering_verdict": "Z",
+    "source_geometry_sha256": "a1e301ee03d46589e26d3fc2272d19ba53c1878f0104274695e5c9a88aa512d2",
+    "source_requirements_sha256": "6776445eb8f994fdfea0897626fc3b2ae021d22b7ec82940b9313d021e26dcee"
+   },
+   {
+    "part_id": "02_FLANGE",
+    "qty": 3,
+    "material": "Aluminum Alloy 5052",
+    "process": "CNC",
+    "geometry_bbox_mm": [
+     9.75,
+     34.8,
+     34.8
+    ],
+    "tolerance": "±0.02 mm key dimensions, GB/T1840-M (readme Machining Specifications); mating parts H7 / interference fit",
+    "missing": [
+     "material_grade_certificate",
+     "surface_finish_per_part",
+     "inspection_requirements",
+     "functional_requirements"
+    ],
+    "engineering_verdict": "Z",
+    "source_geometry_sha256": "a1e301ee03d46589e26d3fc2272d19ba53c1878f0104274695e5c9a88aa512d2",
+    "source_requirements_sha256": "6776445eb8f994fdfea0897626fc3b2ae021d22b7ec82940b9313d021e26dcee"
+   },
+   {
+    "part_id": "02_WRIST_BRACKET",
+    "qty": 1,
+    "material": "Aluminum Alloy 5052",
+    "process": "CNC",
+    "geometry_bbox_mm": [
+     60.75,
+     8,
+     92.922
+    ],
+    "tolerance": "±0.02 mm key dimensions, GB/T1840-M (readme Machining Specifications); mating parts H7 / interference fit",
+    "missing": [
+     "material_grade_certificate",
+     "surface_finish_per_part",
+     "inspection_requirements",
+     "functional_requirements"
+    ],
+    "engineering_verdict": "Z",
+    "source_geometry_sha256": "a1e301ee03d46589e26d3fc2272d19ba53c1878f0104274695e5c9a88aa512d2",
+    "source_requirements_sha256": "6776445eb8f994fdfea0897626fc3b2ae021d22b7ec82940b9313d021e26dcee"
+   },
+   {
+    "part_id": "02_GRIPPER_CONNECTOR_A",
+    "qty": 1,
+    "material": "Aluminum Alloy 5052",
+    "process": "CNC",
+    "geometry_bbox_mm": [
+     35.62,
+     6.02,
+     34.433
+    ],
+    "tolerance": "±0.02 mm key dimensions, GB/T1840-M (readme Machining Specifications); mating parts H7 / interference fit",
+    "missing": [
+     "material_grade_certificate",
+     "surface_finish_per_part",
+     "inspection_requirements",
+     "functional_requirements"
+    ],
+    "engineering_verdict": "Z",
+    "source_geometry_sha256": "a1e301ee03d46589e26d3fc2272d19ba53c1878f0104274695e5c9a88aa512d2",
+    "source_requirements_sha256": "6776445eb8f994fdfea0897626fc3b2ae021d22b7ec82940b9313d021e26dcee"
+   },
+   {
+    "part_id": "02_GRIPPER_CONNECTOR_B",
+    "qty": 1,
+    "material": "Aluminum Alloy 5052",
+    "process": "CNC",
+    "geometry_bbox_mm": [
+     56.802,
+     56.802,
+     9.502
+    ],
+    "tolerance": "±0.02 mm key dimensions, GB/T1840-M (readme Machining Specifications); mating parts H7 / interference fit",
+    "missing": [
+     "material_grade_certificate",
+     "surface_finish_per_part",
+     "inspection_requirements",
+     "functional_requirements"
+    ],
+    "engineering_verdict": "Z",
+    "source_geometry_sha256": "a1e301ee03d46589e26d3fc2272d19ba53c1878f0104274695e5c9a88aa512d2",
+    "source_requirements_sha256": "6776445eb8f994fdfea0897626fc3b2ae021d22b7ec82940b9313d021e26dcee"
+   },
+   {
+    "part_id": "02_SLIDER_BRACKET",
+    "qty": 1,
+    "material": "Aluminum Alloy 5052",
+    "process": "CNC",
+    "geometry_bbox_mm": [
+     176.285,
+     3,
+     68.466
+    ],
+    "tolerance": "±0.02 mm key dimensions, GB/T1840-M (readme Machining Specifications); mating parts H7 / interference fit",
+    "missing": [
+     "material_grade_certificate",
+     "surface_finish_per_part",
+     "inspection_requirements",
+     "functional_requirements"
+    ],
+    "engineering_verdict": "Z",
+    "source_geometry_sha256": "a1e301ee03d46589e26d3fc2272d19ba53c1878f0104274695e5c9a88aa512d2",
+    "source_requirements_sha256": "6776445eb8f994fdfea0897626fc3b2ae021d22b7ec82940b9313d021e26dcee"
+   },
+   {
+    "part_id": "02_SLIDER_EXTENSION",
+    "qty": 2,
+    "material": "Aluminum Alloy 5052",
+    "process": "CNC",
+    "geometry_bbox_mm": [
+     26.2,
+     17.8,
+     38.44
+    ],
+    "tolerance": "±0.02 mm key dimensions, GB/T1840-M (readme Machining Specifications); mating parts H7 / interference fit",
+    "missing": [
+     "material_grade_certificate",
+     "surface_finish_per_part",
+     "inspection_requirements",
+     "functional_requirements"
+    ],
+    "engineering_verdict": "Z",
+    "source_geometry_sha256": "a1e301ee03d46589e26d3fc2272d19ba53c1878f0104274695e5c9a88aa512d2",
+    "source_requirements_sha256": "6776445eb8f994fdfea0897626fc3b2ae021d22b7ec82940b9313d021e26dcee"
+   },
+   {
+    "part_id": "02_LOWER_UPPER_LINK_L",
+    "qty": 1,
+    "material": "Aluminum Alloy 5052",
+    "process": "CNC",
+    "geometry_bbox_mm": [
+     5,
+     76.177,
+     99
+    ],
+    "tolerance": "±0.02 mm key dimensions, GB/T1840-M (readme Machining Specifications); mating parts H7 / interference fit",
+    "missing": [
+     "material_grade_certificate",
+     "surface_finish_per_part",
+     "inspection_requirements",
+     "functional_requirements"
+    ],
+    "engineering_verdict": "Z",
+    "source_geometry_sha256": "a1e301ee03d46589e26d3fc2272d19ba53c1878f0104274695e5c9a88aa512d2",
+    "source_requirements_sha256": "6776445eb8f994fdfea0897626fc3b2ae021d22b7ec82940b9313d021e26dcee"
+   },
+   {
+    "part_id": "02_LOWER_UPPER_LINK_R",
+    "qty": 1,
+    "material": "Aluminum Alloy 5052",
+    "process": "CNC",
+    "geometry_bbox_mm": [
+     5,
+     76.177,
+     99
+    ],
+    "tolerance": "±0.02 mm key dimensions, GB/T1840-M (readme Machining Specifications); mating parts H7 / interference fit",
+    "missing": [
+     "material_grade_certificate",
+     "surface_finish_per_part",
+     "inspection_requirements",
+     "functional_requirements"
+    ],
+    "engineering_verdict": "Z",
+    "source_geometry_sha256": "a1e301ee03d46589e26d3fc2272d19ba53c1878f0104274695e5c9a88aa512d2",
+    "source_requirements_sha256": "6776445eb8f994fdfea0897626fc3b2ae021d22b7ec82940b9313d021e26dcee"
+   },
+   {
+    "part_id": "02_LOWER_WRIST_LINK_L",
+    "qty": 1,
+    "material": "Aluminum Alloy 5052",
+    "process": "CNC",
+    "geometry_bbox_mm": [
+     3,
+     103.943,
+     82.963
+    ],
+    "tolerance": "±0.02 mm key dimensions, GB/T1840-M (readme Machining Specifications); mating parts H7 / interference fit",
+    "missing": [
+     "material_grade_certificate",
+     "surface_finish_per_part",
+     "inspection_requirements",
+     "functional_requirements"
+    ],
+    "engineering_verdict": "Z",
+    "source_geometry_sha256": "a1e301ee03d46589e26d3fc2272d19ba53c1878f0104274695e5c9a88aa512d2",
+    "source_requirements_sha256": "6776445eb8f994fdfea0897626fc3b2ae021d22b7ec82940b9313d021e26dcee"
+   },
+   {
+    "part_id": "02_LOWER_WRIST_LINK_R",
+    "qty": 1,
+    "material": "Aluminum Alloy 5052",
+    "process": "CNC",
+    "geometry_bbox_mm": [
+     3,
+     103.943,
+     82.963
+    ],
+    "tolerance": "±0.02 mm key dimensions, GB/T1840-M (readme Machining Specifications); mating parts H7 / interference fit",
+    "missing": [
+     "material_grade_certificate",
+     "surface_finish_per_part",
+     "inspection_requirements",
+     "functional_requirements"
+    ],
+    "engineering_verdict": "Z",
+    "source_geometry_sha256": "a1e301ee03d46589e26d3fc2272d19ba53c1878f0104274695e5c9a88aa512d2",
+    "source_requirements_sha256": "6776445eb8f994fdfea0897626fc3b2ae021d22b7ec82940b9313d021e26dcee"
+   },
+   {
+    "part_id": "02_GEAR_CONNECTOR",
+    "qty": 1,
+    "material": "Aluminum Alloy 5052",
+    "process": "CNC",
+    "geometry_bbox_mm": [
+     35.002,
+     9.502,
+     35.002
+    ],
+    "tolerance": "±0.02 mm key dimensions, GB/T1840-M (readme Machining Specifications); mating parts H7 / interference fit",
+    "missing": [
+     "material_grade_certificate",
+     "surface_finish_per_part",
+     "inspection_requirements",
+     "functional_requirements"
+    ],
+    "engineering_verdict": "Z",
+    "source_geometry_sha256": "a1e301ee03d46589e26d3fc2272d19ba53c1878f0104274695e5c9a88aa512d2",
+    "source_requirements_sha256": "6776445eb8f994fdfea0897626fc3b2ae021d22b7ec82940b9313d021e26dcee"
+   },
+   {
+    "part_id": "02_RACK",
+    "qty": 2,
+    "material": "Aluminum Alloy 5052",
+    "process": "CNC",
+    "geometry_bbox_mm": [
+     89.999,
+     6,
+     12.002
+    ],
+    "tolerance": "±0.02 mm key dimensions, GB/T1840-M (readme Machining Specifications); mating parts H7 / interference fit",
+    "missing": [
+     "material_grade_certificate",
+     "surface_finish_per_part",
+     "inspection_requirements",
+     "functional_requirements"
+    ],
+    "engineering_verdict": "Z",
+    "source_geometry_sha256": "a1e301ee03d46589e26d3fc2272d19ba53c1878f0104274695e5c9a88aa512d2",
+    "source_requirements_sha256": "6776445eb8f994fdfea0897626fc3b2ae021d22b7ec82940b9313d021e26dcee"
+   },
+   {
+    "part_id": "03_LINK1",
+    "qty": 1,
+    "material": "Aluminum Alloy 5052",
+    "process": "CNC + Sheet Metal",
+    "geometry_bbox_mm": [
+     77.533,
+     83.89,
+     84.192
+    ],
+    "tolerance": "±0.02 mm key dimensions, GB/T1840-M (readme Machining Specifications); mating parts H7 / interference fit",
+    "missing": [
+     "material_grade_certificate",
+     "surface_finish_per_part",
+     "inspection_requirements",
+     "functional_requirements"
+    ],
+    "engineering_verdict": "Z",
+    "source_geometry_sha256": "a1e301ee03d46589e26d3fc2272d19ba53c1878f0104274695e5c9a88aa512d2",
+    "source_requirements_sha256": "6776445eb8f994fdfea0897626fc3b2ae021d22b7ec82940b9313d021e26dcee"
+   },
+   {
+    "part_id": "03_LINK2",
+    "qty": 2,
+    "material": "Aluminum Alloy 5052",
+    "process": "CNC + Sheet Metal",
+    "geometry_bbox_mm": [
+     23,
+     321,
+     57
+    ],
+    "tolerance": "±0.02 mm key dimensions, GB/T1840-M (readme Machining Specifications); mating parts H7 / interference fit",
+    "missing": [
+     "material_grade_certificate",
+     "surface_finish_per_part",
+     "inspection_requirements",
+     "functional_requirements"
+    ],
+    "engineering_verdict": "Z",
+    "source_geometry_sha256": "a1e301ee03d46589e26d3fc2272d19ba53c1878f0104274695e5c9a88aa512d2",
+    "source_requirements_sha256": "6776445eb8f994fdfea0897626fc3b2ae021d22b7ec82940b9313d021e26dcee"
+   },
+   {
+    "part_id": "03_LINK3_L",
+    "qty": 1,
+    "material": "Aluminum Alloy 5052",
+    "process": "CNC + Sheet Metal",
+    "geometry_bbox_mm": [
+     28.625,
+     297.826,
+     57
+    ],
+    "tolerance": "±0.02 mm key dimensions, GB/T1840-M (readme Machining Specifications); mating parts H7 / interference fit",
+    "missing": [
+     "material_grade_certificate",
+     "surface_finish_per_part",
+     "inspection_requirements",
+     "functional_requirements"
+    ],
+    "engineering_verdict": "Z",
+    "source_geometry_sha256": "a1e301ee03d46589e26d3fc2272d19ba53c1878f0104274695e5c9a88aa512d2",
+    "source_requirements_sha256": "6776445eb8f994fdfea0897626fc3b2ae021d22b7ec82940b9313d021e26dcee"
+   },
+   {
+    "part_id": "03_LINK3_R",
+    "qty": 1,
+    "material": "Aluminum Alloy 5052",
+    "process": "CNC + Sheet Metal",
+    "geometry_bbox_mm": [
+     27.625,
+     297.826,
+     57
+    ],
+    "tolerance": "±0.02 mm key dimensions, GB/T1840-M (readme Machining Specifications); mating parts H7 / interference fit",
+    "missing": [
+     "material_grade_certificate",
+     "surface_finish_per_part",
+     "inspection_requirements",
+     "functional_requirements"
+    ],
+    "engineering_verdict": "Z",
+    "source_geometry_sha256": "a1e301ee03d46589e26d3fc2272d19ba53c1878f0104274695e5c9a88aa512d2",
+    "source_requirements_sha256": "6776445eb8f994fdfea0897626fc3b2ae021d22b7ec82940b9313d021e26dcee"
+   },
+   {
+    "part_id": "03_LINK5",
+    "qty": 1,
+    "material": "Aluminum Alloy 5052",
+    "process": "CNC + Sheet Metal",
+    "geometry_bbox_mm": [
+     50,
+     60,
+     60
+    ],
+    "tolerance": "±0.02 mm key dimensions, GB/T1840-M (readme Machining Specifications); mating parts H7 / interference fit",
+    "missing": [
+     "material_grade_certificate",
+     "surface_finish_per_part",
+     "inspection_requirements",
+     "functional_requirements"
+    ],
+    "engineering_verdict": "Z",
+    "source_geometry_sha256": "a1e301ee03d46589e26d3fc2272d19ba53c1878f0104274695e5c9a88aa512d2",
+    "source_requirements_sha256": "6776445eb8f994fdfea0897626fc3b2ae021d22b7ec82940b9313d021e26dcee"
+   }
+  ],
+  "vector_values_source": "BOM_RESULT.json of the Judge Mode run (bom_digest 02730d7a…); process and tolerance texts verbatim"
+ },
+ "coalition_fixture": {
+  "type": "INDEPENDENT SYNTHETIC FIXTURE · not linked to the reBot procurement",
+  "buyers": 5,
+  "units_each": 20,
+  "moq": 100,
+  "all_in_cents": 242500,
+  "per_buyer_cents": 48500,
+  "production_cents": 230000,
+  "shipping_cents": 12500,
+  "source": "https://github.com/veraxis-protocol/LEGION-Deal-Rescue/blob/2cc7dbdc2b305d92b4fd64614c74bc56b16c4cfe/deal_rescue/judge/experience.py"
+ },
+ "case_b": {
+  "type": "CASE B · RECORDED SYNTHETIC COMMERCE · PayPal Sandbox test money",
+  "buyers": 5,
+  "units_each": 20,
+  "moq": 100,
+  "buyer_cap_cents": 10000,
+  "contract_hash": "809b4f82b5bd3e3dd130d98ae3ca9644d7bca77818b60284e8d3ac0d9763dc8d",
+  "supplier_is_real": false,
+  "fulfilment": "SIMULATED",
+  "offers": [
+   {
+    "total_cents": 48000,
+    "version": 1,
+    "outcome": "INVALIDATED_BY_INJECTED_PRICE_SHOCK"
+   },
+   {
+    "total_cents": 54000,
+    "version": 2,
+    "outcome": "REJECTED_BY_5_BUYERS_OVER_CAP"
+   },
+   {
+    "total_cents": 49500,
+    "version": 3,
+    "outcome": "SIGNED_BY_7_PARTIES"
+   }
+  ],
+  "judge_checks_passed": 63,
+  "judge_checks_total": 63,
+  "payPal_test_cents": 49500,
+  "captures": [
+   "0DR81708WC9477605",
+   "76276237BR937351W",
+   "71988721JR129760J",
+   "3PG41022DY609720J",
+   "65542700KX1483810"
+  ],
+  "paypal_verdict": "T",
+  "readback_confirmed": true,
+  "new_provider_posts": 0,
+  "source": "https://github.com/veraxis-protocol/LEGION-Deal-Rescue/blob/2cc7dbdc2b305d92b4fd64614c74bc56b16c4cfe/PAYPAL_STATUS.md"
+ },
+ "verification": {
+  "browser_e2e": "42/42",
+  "unit_tests": "180/180",
+  "required_real_tests": "8/8",
+  "negative_checks": "10/10",
+  "source_commit": "2cc7dbdc2b305d92b4fd64614c74bc56b16c4cfe",
+  "engineering_admission": "Z",
+  "new_live_paypal_capture": "Z / NOT_EXECUTED"
+ }
+}
