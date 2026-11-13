@@ -4,29 +4,29 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="theme-color" content="#f7f9fc">
-  <meta name="description" content="Watch 40 engineering parts checked against pinned evidence, explore supplier agent decisions, and replay an independently verified PayPal Sandbox deal.">
-  <title>Try LEGION — Live Engineering Decision Workspace</title>
+  <meta name="description" content="Try LEGION: check an uploaded CAD drawing, review parts, explore manufacturing options, form a group order and inspect PayPal Sandbox confirmations.">
+  <title>Try LEGION — Your Drawing to a Group Order</title>
   <link rel="stylesheet" href="./try-live.css">
   <script defer src="./try-live.js"></script>
 </head>
 <body>
 <header class="app-topbar">
   <a class="brand" href="/" aria-label="LEGION home"><span class="brand-mark">⌁</span>LEGION<span class="brand-point">.</span></a>
-  <span class="app-subbrand">Engineering execution workspace <span class="top-divider">/</span> Evidence-bound demo</span>
-  <span class="top-status"><span class="status-dot"></span> LIVE LOCAL CHECK · RECORDED FORMAL EVIDENCE</span>
+  <span class="app-subbrand">Your manufacturing order <span class="top-divider">/</span> Interactive product demo</span>
+  <span class="top-status"><span class="status-dot"></span> CHECKING SAVED PART DATA · RECORDED DECISIONS</span>
 </header>
 <main class="app-shell" id="app">
   <div class="workspace-intro">
-    <div class="workspace-location"><span class="tiny-line"></span> NEW WORKSPACE <span class="muted">/ EVIDENCE-BOUND SESSION</span></div>
-    <h1 id="workspaceTitle">Your drawing is ready. LEGION is working.</h1>
-    <p id="workspaceSubtitle">Watch the 40-part local evidence check and the recorded Formal Core decision.</p>
+    <div class="workspace-location"><span class="tiny-line"></span> TRY LEGION <span class="muted">/ NO SIGNUP · NO CHARGES</span></div>
+    <h1 id="workspaceTitle">40 parts found. Watch the checks.</h1>
+    <p id="workspaceSubtitle">Your CAD is loaded. Watch every component being checked for manufacturing readiness.</p>
   </div>
   <nav class="journey" aria-label="LEGION workflow stages">
-    <button class="journey-step active" data-stage="0" aria-current="step"><span class="journey-number">01</span><span class="journey-name">Engineering</span><span class="journey-dot"></span></button>
-    <button class="journey-step" data-stage="1" disabled><span class="journey-number">02</span><span class="journey-name">Vectors</span><span class="journey-dot"></span></button>
-    <button class="journey-step" data-stage="2" disabled><span class="journey-number">03</span><span class="journey-name">Supplier agents</span><span class="journey-dot"></span></button>
-    <button class="journey-step" data-stage="3" disabled><span class="journey-number">04</span><span class="journey-name">Deal</span><span class="journey-dot"></span></button>
-    <button class="journey-step" data-stage="4" disabled><span class="journey-number">05</span><span class="journey-name">PayPal</span><span class="journey-dot"></span></button>
+    <button class="journey-step active" data-stage="0" aria-current="step"><span class="journey-number">01</span><span class="journey-name">Check drawing</span><span class="journey-dot"></span></button>
+    <button class="journey-step" data-stage="1" disabled><span class="journey-number">02</span><span class="journey-name">Review parts</span><span class="journey-dot"></span></button>
+    <button class="journey-step" data-stage="2" disabled><span class="journey-number">03</span><span class="journey-name">Find suppliers</span><span class="journey-dot"></span></button>
+    <button class="journey-step" data-stage="3" disabled><span class="journey-number">04</span><span class="journey-name">Group order</span><span class="journey-dot"></span></button>
+    <button class="journey-step" data-stage="4" disabled><span class="journey-number">05</span><span class="journey-name">Payment</span><span class="journey-dot"></span></button>
   </nav>
   <div id="loadError" class="error-card" role="alert" hidden></div>
   <div id="workspace" class="workspace" hidden>
@@ -34,8 +34,8 @@
     <section class="work-canvas" aria-label="LEGION work area"><div id="workCanvas" aria-live="polite"></div></section>
     <aside class="decision-rail" aria-label="Result and supporting evidence"><div id="decisionRail"></div></aside>
   </div>
-  <div class="loading" id="loading" role="status"><span class="loading-orbit"></span> Loading source-bound engineering evidence…</div>
-  <footer class="site-footer"><span>LEGION · Evidence-bound engineering checks and recorded commerce replay</span><a href="https://github.com/veraxis-protocol/LEGION-Deal-Rescue" target="_blank" rel="noopener noreferrer">Source and independent tests ↗</a></footer>
+  <div class="loading" id="loading" role="status"><span class="loading-orbit"></span> Opening your saved drawing and preparing the 40-part check…</div>
+  <footer class="site-footer"><span>LEGION · Real drawing review and clearly marked recorded commerce examples</span><a href="https://github.com/veraxis-protocol/LEGION-Deal-Rescue" target="_blank" rel="noopener noreferrer">Source and independent tests ↗</a></footer>
 </main>
 </body>
 </html>
