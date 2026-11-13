@@ -3,7 +3,7 @@
  */
 (()=>{
 'use strict';
-let controller=null,runNumber=0,selected=null,observations=[],previous='0'.repeat(64);
+let controller=null,runNumber=0,selected=null,observations=[];
 const $=s=>document.querySelector(s);
 const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;','\'':'&#39;'}[c]));
 function mount(){
@@ -29,40 +29,62 @@ function view(){
  }).join('')||'<div class="reality-empty">No verified server observations.</div>';
 }
 async function sha256(text){const data=new TextEncoder().encode(text);const h=await crypto.subtle.digest('SHA-256',data);return Array.from(new Uint8Array(h),x=>x.toString(16).padStart(2,'0')).join('');}
-async function verifyRecord(rec){
- if(rec?.schema!=='legion.part-observation.v1'||rec.seq!==observations.length+1||rec.part_id!==selected||rec.previous_hash!==previous)return false;
+// A run owns its own identity, hash position and verified records. Never let a
+// late digest, network chunk or cancellation mutate another part's X-Ray.
+const live=ctx=>ctx.id===runNumber&&!ctx.signal.aborted;
+async function verifyRecord(rec,ctx){
+ if(!live(ctx))return false;
+ if(rec?.schema!=='legion.part-observation.v1'||rec.seq!==ctx.events.length+1||rec.part_id!==ctx.part||rec.previous_hash!==ctx.previous)return false;
  if(rec.evidence?.scope!=='CASE_A'||rec.evidence?.git_blob!=='65aaf62745ca436c06d7ec35e32586095c9f9da6')return false;
  if(!['DENY','NO_RFQ_SENT','NO_ENGINEERING_PERMIT','NEEDS_INDEPENDENT_REVIEW','READ_ONLY_OBSERVATION','SOURCE_BOUND','ASK_BUYER_NO_EFFECT','OBSERVATION_COMPLETE_NOT_PURCHASE'].includes(rec.decision))return false;
  const {event_hash,...fields}=rec;
- if(await sha256(JSON.stringify(fields))!==event_hash)return false;
- previous=event_hash;return true;
+ const digest=await sha256(JSON.stringify(fields));
+ if(!live(ctx)||digest!==event_hash)return false;
+ ctx.previous=event_hash;
+ return true;
 }
 async function run(){
- mount();selected=currentPart();runNumber++;const myRun=runNumber;
- if(controller)controller.abort();controller=new AbortController();observations=[];previous='0'.repeat(64);view();
- $('#realityCurrentPart').textContent=`Checking ${selected} · read-only`;
+ mount();
+ const part=currentPart(),id=++runNumber;
+ // In-flight old runs are cancelled. Completed runs release their controller
+ // in finally, so switching parts cannot abort an already verified response.
+ if(controller)controller.abort();
+ const ownController=new AbortController();controller=ownController;
+ const ctx={id,part,signal:ownController.signal,events:[],previous:'0'.repeat(64)};
+ selected=part;observations=ctx.events;view();
+ $('#realityCurrentPart').textContent=`Checking ${part} · read-only`;
  status('Opening server tool stream…');
  try{
-  const res=await fetch('/api/part-observe?part='+encodeURIComponent(selected),{method:'GET',headers:{accept:'application/x-ndjson'},cache:'no-store',signal:controller.signal});
+  const res=await fetch('/api/part-observe?part='+encodeURIComponent(part),{method:'GET',headers:{accept:'application/x-ndjson'},cache:'no-store',signal:ownController.signal});
+  if(!live(ctx))return;
   if(!res.ok){let reason=res.status;try{reason=(await res.json()).code||reason;}catch{}throw Error('NO_GO: '+reason);}
   if(res.headers.get('x-legion-mode')!=='SERVER_SOURCE_BOUND_OBSERVATION'||res.headers.get('x-legion-financial-effects')!=='0')throw Error('NO_GO: runtime identity missing');
   if(!res.body)throw Error('NO_GO: missing event stream');
   const reader=res.body.getReader();const decoder=new TextDecoder();let buffer='';let done=false;
   while(!done){
-   const block=await reader.read();if(myRun!==runNumber)return;done=block.done;buffer+=decoder.decode(block.value||new Uint8Array(),{stream:!done});
+   const block=await reader.read();if(!live(ctx))return;
+   done=block.done;buffer+=decoder.decode(block.value||new Uint8Array(),{stream:!done});
    while(buffer.includes('\n')){
     const at=buffer.indexOf('\n');const line=buffer.slice(0,at);buffer=buffer.slice(at+1);if(!line.trim())continue;
-    const event=JSON.parse(line);if(!(await verifyRecord(event)))throw Error('NO_GO: invalid observation chain');
-    observations.push(event);status(`${observations.length} server events · verified`,'running');view();
+    const event=JSON.parse(line);const verified=await verifyRecord(event,ctx);
+    if(!live(ctx))return;
+    if(!verified)throw Error('NO_GO: invalid observation chain');
+    ctx.events.push(event);observations=ctx.events;
+    status(`${ctx.events.length} server events · verified`,'running');view();
    }
   }
+  if(!live(ctx))return;
   if(buffer.trim())throw Error('NO_GO: incomplete NDJSON frame');
-  const last=observations.at(-1);
-  if(observations.length!==8||last?.decision!=='OBSERVATION_COMPLETE_NOT_PURCHASE'||last?.result?.procurement!=='BLOCKED'||last?.result?.new_captures!==0)throw Error('NO_GO: incomplete engineering closure');
-  status(`PASS · 8/8 hash-linked events · purchasing blocked`,'good');
+  const last=ctx.events.at(-1);
+  if(ctx.events.length!==8||last?.decision!=='OBSERVATION_COMPLETE_NOT_PURCHASE'||last?.result?.procurement!=='BLOCKED'||last?.result?.new_captures!==0)throw Error('NO_GO: incomplete engineering closure');
+  status('PASS · 8/8 hash-linked events · purchasing blocked','good');
  }catch(e){
-  if(e.name==='AbortError'||myRun!==runNumber)return;
-  observations=[];previous='0'.repeat(64);view();status(String(e.message).slice(0,140),'error');
+  if(!live(ctx))return; // Only superseded/user-aborted requests are expected cancellations.
+  observations=[];view();const msg=String(e?.message||e);status((msg.startsWith('NO_GO:')?msg:'NO_GO: '+msg).slice(0,140),'error');
+ }finally{
+  // This is a conditional release: an older run may not clear a new run's
+  // controller after its delayed WebCrypto/reader task completes.
+  if(controller===ownController)controller=null;
  }
 }
 function observer(){

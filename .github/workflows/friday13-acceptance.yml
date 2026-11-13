@@ -1,0 +1,50 @@
+name: Friday13 source-bound acceptance
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  admission:
+    name: Friday13 / invariants and regression
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Checkout verified source
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          persist-credentials: false
+      - name: Node 22
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
+        with:
+          node-version: '22'
+      - name: Verify source pin and JavaScript syntax
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$(git hash-object public/try/evidence.json)" = '65aaf62745ca436c06d7ec35e32586095c9f9da6'
+          node --check public/try/reality001-client.js
+          node --check netlify/lib/part-observe-core.mjs
+          node --check netlify/functions/part-observe.mjs
+          node --check test-reality001a.mjs
+          node --check test-reality001b.mjs
+      - name: Source and fail-closed gates (35 checks)
+        run: node test-reality001a.mjs
+      - name: Frontend run lifecycle / 100-switch regression
+        run: node test-reality001b.mjs
+      - name: Friday13 product contracts (41 checks)
+        run: node test-friday13.mjs
+      - name: Prior runtime regression
+        run: node test-try-runtime.mjs
+      - name: One-click front door regression
+        run: node test-one-click-ui.mjs
+      - name: Functions regression
+        run: node test-functions.mjs
+      - name: NIM fail-closed regression
+        run: node test-customer-nim.mjs
