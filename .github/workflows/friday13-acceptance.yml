@@ -34,10 +34,16 @@ jobs:
           node --check netlify/functions/part-observe.mjs
           node --check test-reality001a.mjs
           node --check test-reality001b.mjs
+          node --check public/try/product001.js
+          node --check netlify/lib/rfq-preview-core.mjs
+          node --check netlify/functions/rfq-preview.mjs
+          node --check test-product001.mjs
       - name: Source and fail-closed gates (35 checks)
         run: node test-reality001a.mjs
       - name: Frontend run lifecycle / 100-switch regression
         run: node test-reality001b.mjs
+      - name: Manufacturing product RFQ intake and fail-closed safety (61 checks)
+        run: node test-product001.mjs
       - name: Friday13 product contracts (41 checks)
         run: node test-friday13.mjs
       - name: Prior runtime regression
