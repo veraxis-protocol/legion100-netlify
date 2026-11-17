@@ -33,4 +33,11 @@ const dir=mkdtempSync(path.join(os.tmpdir(),'legion-final003-'));try{
  const tmp=path.join(dir,'inline.js');writeFileSync(tmp,js);execFileSync(process.execPath,['--check',tmp],{stdio:'pipe'});
  check('browser inline script parses',()=>assert.ok(true));
 }finally{rmSync(dir,{recursive:true,force:true})}
+
+check('dragstart listener survives dynamic re-render',()=>assert.ok(html.includes("document.addEventListener('dragstart'")&&!html.includes("for(const card of $$('.sample'))card.addEventListener('dragstart'")));
+check('drag sample payload bound to an approved card',()=>assert.ok(html.includes("e.dataTransfer.setData('application/x-legion-sample',sample)")&&html.includes("SAMPLES.some(s=>s.id===sample)")));
+check('reBot has visible read-only control',()=>assert.ok(html.includes('data-act=\"observe-rebot\"')||html.includes('data-act="observe-rebot"')));
+check('reBot read-only action calls existing GET observer',()=>assert.ok(html.includes("a==='observe-rebot'")&&html.includes('observeRebot(d)')&&html.includes("if(d?.mode!=='PINNED'")));
+check('small screens have a distinct visible legacy entry',()=>assert.ok(html.includes('rail-mobile-actions')&&html.includes('Previous evidence lab')));
+check('legacy still signals same-origin checked parent',()=>assert.ok(html.includes("LEGION_SHOW_LEGACY_003")&&src.includes('e.origin!==location.origin')));
 console.log('PASS FINAL003 '+n+'/'+n);
