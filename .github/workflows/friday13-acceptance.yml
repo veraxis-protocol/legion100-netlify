@@ -38,6 +38,8 @@ jobs:
           node --check netlify/lib/rfq-preview-core.mjs
           node --check netlify/functions/rfq-preview.mjs
           node --check test-product001.mjs
+          node --check public/try/legion-final-003.js
+          node --check test-final003.mjs
       - name: Source and fail-closed gates (35 checks)
         run: node test-reality001a.mjs
       - name: Frontend run lifecycle / 100-switch regression
@@ -54,3 +56,5 @@ jobs:
         run: node test-functions.mjs
       - name: NIM fail-closed regression
         run: node test-customer-nim.mjs
+      - name: Unified 3-role order and safety contracts (Final003)
+        run: node test-final003.mjs
