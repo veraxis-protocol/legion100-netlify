@@ -58,3 +58,5 @@ jobs:
         run: node test-customer-nim.mjs
       - name: Unified 3-role order and safety contracts (Final003)
         run: node test-final003.mjs
+      - name: Mandatory HITL 006 / CAD source and fail-closed contracts
+        run: node test-hitl006.mjs

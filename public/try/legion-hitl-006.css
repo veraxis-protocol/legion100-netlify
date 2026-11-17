@@ -1,0 +1,127 @@
+/* LEGION 006: unified single-viewport light HITL experience. Never assigns execution authority. */
+:root{--lx-navy:#102b3c;--lx-navy2:#0b2433;--lx-teal:#0d8e82;--lx-tdeep:#08685e;--lx-bg:#f3f6f8;--lx-ink:#183245;--lx-muted:#6a8291;--lx-line:#dce7ec;--lx-red:#b95450;--lx-amber:#a97823;--lx-white:#fff}
+body.lx-active{overflow:hidden!important;background:#f3f6f8}
+body.lx-active #root,body.lx-active #productWorkspace,body.lx-active #pnLegacyReturn,body.lx-active #legionFinalFrame,body.lx-active #legionFinalReturn{display:none!important}
+#lxApp,#lxApp *{box-sizing:border-box}
+#lxApp{font-family:Inter,ui-sans-serif,system-ui,-apple-system,Segoe UI,Arial,sans-serif;position:fixed;inset:0;z-index:20000;display:grid;grid-template-rows:60px minmax(0,1fr) 36px;background:var(--lx-bg);color:var(--lx-ink);font-size:12px;line-height:1.42;overflow:hidden}
+#lxApp[hidden]{display:none!important}
+#lxApp button,#lxApp input,#lxApp select,#lxApp textarea{font:inherit}
+#lxApp button{cursor:pointer;border:0}
+#lxApp button:disabled{opacity:.46;cursor:not-allowed}
+#lxApp button:focus-visible,#lxApp select:focus-visible,#lxApp input:focus-visible,#lxApp canvas:focus-visible{outline:3px solid #61d6c4;outline-offset:2px}
+#lxApp .lx-top{background:#fff;border-bottom:1px solid var(--lx-line);display:flex;align-items:center;justify-content:space-between;padding:0 17px;gap:14px;min-width:0}
+#lxApp .lx-brand{display:flex;align-items:center;gap:10px;white-space:nowrap;flex-shrink:0}
+#lxApp .lx-mark{width:29px;height:29px;border-radius:8px;background:linear-gradient(135deg,#13b2a4,#0d6665);color:#fff;display:grid;place-items:center;font-size:17px;font-weight:900;box-shadow:0 4px 12px #11bfa42b}
+#lxApp .lx-logo{font-size:21px;font-weight:900;letter-spacing:-.07em;color:var(--lx-navy)}
+#lxApp .lx-tagline{color:#668093;font-size:11px;margin-left:10px;padding-left:15px;border-left:1px solid #d5e0e7}
+#lxApp .lx-topright{display:flex;align-items:center;gap:12px;min-width:0}
+#lxApp .lx-badge{padding:5px 9px;border-radius:7px;font-weight:800;font-size:10px;white-space:nowrap;border:1px solid #e7d0a6;background:#fff9ee;color:#926522}
+#lxApp .lx-rolebar{display:flex;align-items:center;background:#edf3f6;border:1px solid #dde8ec;border-radius:9px;padding:3px;gap:3px}
+#lxApp .lx-rolebar button{padding:7px 11px;border-radius:7px;background:transparent;color:#667d8d;font-weight:700;font-size:11px;white-space:nowrap}
+#lxApp .lx-rolebar button[aria-pressed=true]{background:#fff;color:#123d4b;box-shadow:0 2px 5px #14324518}
+#lxApp .lx-run{font:700 10px ui-monospace,Consolas,monospace;color:#697d8a}
+#lxApp .lx-mobile-tabs{display:none}
+#lxApp .lx-grid{min-height:0;display:grid;grid-template-columns:minmax(230px,24%) minmax(490px,1fr) minmax(255px,23%);gap:10px;padding:10px;overflow:hidden}
+#lxApp .lx-panel{background:#fff;border:1px solid var(--lx-line);border-radius:13px;min-width:0;min-height:0;display:flex;flex-direction:column;overflow:hidden;box-shadow:0 10px 30px #18364705}
+#lxApp .lx-panelhead{padding:14px 15px 10px;flex-shrink:0;border-bottom:1px solid #e7eef1;display:flex;align-items:center;justify-content:space-between;gap:6px}
+#lxApp .lx-panelhead h2{font-size:14px;letter-spacing:-.03em;margin:0;color:#143444}
+#lxApp .lx-panelhead small{font-size:10px;color:#78909e}
+#lxApp .lx-panelbody{padding:13px 14px;overflow:auto;min-height:0;scrollbar-color:#c1d8db transparent;scrollbar-width:thin}
+#lxApp .lx-panelbody::-webkit-scrollbar{width:5px}#lxApp .lx-panelbody::-webkit-scrollbar-thumb{background:#c1d8db;border-radius:10px}
+#lxApp .lx-entry{display:grid;grid-template-columns:1fr 1fr 1fr;gap:5px;margin-bottom:10px}
+#lxApp .lx-entry button{padding:9px 4px;border-radius:8px;border:1px solid #d8e7e8;background:#f7fbfb;color:#23636a;font-size:10px;font-weight:750;min-width:0}
+#lxApp .lx-entry button:hover{border-color:#46a69a;background:#e7f6f3}
+#lxApp .lx-fileinput{display:none}
+#lxApp .lx-selector{border:1px dashed #9dbfc0;border-radius:9px;padding:10px 10px 8px;margin:8px 0 11px;background:#f8fcfb;transition:.2s}
+#lxApp .lx-selector.drag{background:#daf6ef;border:2px dashed #0a9983}
+#lxApp .lx-selector b{display:block;font-size:12px}
+#lxApp .lx-selector p{font-size:10px;color:#698793;margin:4px 0 8px}
+#lxApp .lx-samples{display:flex;gap:6px;flex-wrap:wrap}
+#lxApp .lx-mini{background:#fff;border:1px solid #cde0e2;border-radius:6px;padding:6px 8px;color:#18545d;font-weight:800;font-size:10px}
+#lxApp .lx-mini[draggable]{cursor:grab}
+#lxApp .lx-mini:hover{border-color:var(--lx-teal)}
+#lxApp .lx-preview{position:relative;border-radius:10px;min-height:160px;overflow:hidden;background:radial-gradient(ellipse at 60% 25%,#fefefe 10%,#eaf3f7 58%,#e0e9ef);border:1px solid #e1e9ec;display:flex;justify-content:center;align-items:center}
+#lxApp #lxCanvas{display:block;width:100%;height:100%;min-height:168px;touch-action:none;cursor:grab}
+#lxApp #lxCanvas:active{cursor:grabbing}
+#lxApp .lx-canvasmeta{position:absolute;left:9px;bottom:8px;right:9px;display:flex;align-items:center;justify-content:space-between;pointer-events:none;gap:6px}
+#lxApp .lx-canvasmeta span{font-size:9px;background:#fffdf9ec;color:#28616a;padding:5px 7px;border-radius:6px;font-weight:800}
+#lxApp .lx-canvasmeta .lx-mesh-badge{color:#a06b26;background:#fff3d7eb}
+#lxApp .lx-source{margin:9px 0 12px;overflow-wrap:anywhere}
+#lxApp .lx-source b{font-size:12px}
+#lxApp .lx-source p{font-size:10px;color:#79919b;margin:4px 0 0}
+#lxApp .lx-spec{border-top:1px solid #e6edf1;padding-top:8px;margin-top:9px}
+#lxApp .lx-spec h3{font-size:11px;margin:0 0 7px;color:#244456}
+#lxApp .lx-pair{display:flex;justify-content:space-between;gap:5px;border-bottom:1px solid #eff3f5;padding:6px 0;font-size:10px;color:#68808d}
+#lxApp .lx-pair b{color:#203b49;font-weight:750;text-align:right;overflow-wrap:anywhere;max-width:56%}
+#lxApp .lx-links{display:flex;align-items:center;gap:7px;flex-wrap:wrap;margin-top:10px}
+#lxApp .lx-link{background:none;text-decoration:underline;color:#086d6a;font-size:10px;font-weight:800;padding:3px 0}
+#lxApp .lx-center{padding:12px 14px 14px;gap:10px}
+#lxApp .lx-heading{display:flex;align-items:center;justify-content:space-between;gap:10px;min-width:0}
+#lxApp .lx-heading h1{font-size:19px;margin:0;letter-spacing:-.045em;line-height:1.2}
+#lxApp .lx-heading p{font-size:10px;color:#728c99;margin:4px 0 0}
+#lxApp .lx-step-track{display:grid;grid-template-columns:repeat(10,minmax(0,1fr));gap:2px;flex-shrink:0;background:#f8fafb;border:1px solid #e6edef;padding:8px 5px;border-radius:10px}
+#lxApp .lx-st{background:transparent;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;gap:4px;padding:0 2px;color:#768d9b;min-width:0;min-height:50px;cursor:default}
+#lxApp .lx-st .lx-num{height:22px;min-width:22px;border-radius:50%;display:grid;place-items:center;font-weight:800;font-size:10px;background:#e7eef1;border:1px solid #d7e4e7}
+#lxApp .lx-st label{font-size:9px;line-height:1.15;text-align:center;word-break:break-word;max-width:100%;cursor:inherit}
+#lxApp .lx-st.done .lx-num{background:#d3f4e9;border-color:#a7dfd0;color:#0b8b75}
+#lxApp .lx-st.current .lx-num{background:var(--lx-teal);color:white;box-shadow:0 0 0 3px #ccf2e9}
+#lxApp .lx-st.current label{color:#0c695f;font-weight:800}
+#lxApp .lx-st.locked{opacity:.72}
+#lxApp .lx-work{flex:1;min-height:0;border:1px solid #dce9eb;border-radius:11px;overflow:hidden;display:flex;flex-direction:column}
+#lxApp .lx-workhead{display:flex;gap:10px;align-items:center;justify-content:space-between;background:linear-gradient(96deg,#f2faf8,#f9fcfd);padding:13px 15px;border-bottom:1px solid #e1eced}
+#lxApp .lx-workhead h2{font-size:17px;margin:0 0 3px;letter-spacing:-.04em}
+#lxApp .lx-workhead p{font-size:10px;color:#758e9b;margin:0}
+#lxApp .lx-workhead strong{font-size:10px;border-radius:7px;background:#fff2db;color:#9a661b;border:1px solid #edd6a7;padding:6px 8px;white-space:nowrap}
+#lxApp .lx-workbody{flex:1;min-height:0;overflow:auto;padding:12px 14px;scrollbar-width:thin}
+#lxApp .lx-workbody .lx-evidence{display:grid;grid-template-columns:1.05fr 1fr;gap:10px}
+#lxApp .lx-data{border:1px solid #e1eaed;border-radius:9px;padding:12px;background:#fff;min-width:0}
+#lxApp .lx-data h3{font-size:11px;margin:0 0 8px;color:#2b5060}
+#lxApp .lx-datarow{display:flex;gap:7px;align-items:start;margin-bottom:8px;font-size:10px;line-height:1.35;color:#536e7c}
+#lxApp .lx-dot{width:15px;height:15px;flex-shrink:0;border-radius:50%;background:#daf5e9;color:#168770;display:grid;place-items:center;font-size:10px;font-weight:900}
+#lxApp .lx-dot.warn{color:#b87927;background:#fff0d6}
+#lxApp .lx-warning{background:#fff8ed;border:1px solid #efd8ac;border-radius:8px;padding:10px;margin-top:10px;color:#876022;font-size:10px;font-weight:700;line-height:1.5}
+#lxApp .lx-human{padding:11px 14px;border-top:1px solid #d6e6e6;background:#f8fcfb;flex-shrink:0}
+#lxApp .lx-human-head{display:flex;align-items:center;justify-content:space-between;gap:7px;margin-bottom:7px}
+#lxApp .lx-human-head b{font-size:12px;color:#0d5e58}
+#lxApp .lx-human-head span{font-size:9px;color:#9f682a;background:#fff2dd;padding:4px 7px;border-radius:6px;font-weight:850}
+#lxApp .lx-human-row{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,.75fr);gap:7px;margin-bottom:7px}
+#lxApp .lx-human label{color:#627c88;font-size:9px;display:block}
+#lxApp .lx-human input,#lxApp .lx-human select{margin-top:3px;width:100%;padding:7px 8px;color:#1c3c4b;background:#fff;border:1px solid #d5e5e9;border-radius:6px;font-size:11px}
+#lxApp .lx-checklabel{display:flex!important;align-items:center;gap:6px;margin:6px 0 7px;color:#405b67!important;line-height:1.3}
+#lxApp .lx-checklabel input{margin:0;width:15px;height:15px;flex-shrink:0;accent-color:#117e70}
+#lxApp .lx-actions{display:flex;gap:7px;align-items:center;flex-wrap:wrap}
+#lxApp .lx-primary,#lxApp .lx-secondary,#lxApp .lx-danger{padding:9px 11px;border-radius:7px;font-weight:820;font-size:10px}
+#lxApp .lx-primary{background:#0a756a;color:#fff}
+#lxApp .lx-primary:hover{background:#095f58}
+#lxApp .lx-secondary{background:#fff;color:#275b65;border:1px solid #cbdfe3!important}
+#lxApp .lx-danger{background:#fff5f4;color:#a44c4c;border:1px solid #f1d1cf!important}
+#lxApp .lx-action-note{font-size:10px;font-weight:750;color:#9a6029;margin-top:6px}
+#lxApp .lx-right .lx-panelbody{padding:10px 13px}
+#lxApp .lx-feed{flex:1;overflow:auto;min-height:0;padding:9px 13px;border-bottom:1px solid #e7eef0;scrollbar-width:thin}
+#lxApp .lx-event{display:flex;gap:9px;padding:10px 2px;border-bottom:1px solid #edf1f4}
+#lxApp .lx-event:last-child{border:none}
+#lxApp .lx-eventmark{width:20px;height:20px;flex:0 0 20px;border-radius:50%;background:#e5f6f0;color:#0b927d;display:grid;place-items:center;font-weight:900;font-size:10px}
+#lxApp .lx-eventmark.hold{background:#fff0d7;color:#a97823}
+#lxApp .lx-event b{font-size:10px;display:block;color:#203d4a}
+#lxApp .lx-event small{font-size:9px;color:#8294a1;display:block;margin-top:2px}
+#lxApp .lx-event p{font-size:10px;color:#748a95;line-height:1.4;margin:3px 0 0;overflow-wrap:anywhere}
+#lxApp .lx-rightbottom{padding:12px 13px;flex-shrink:0}
+#lxApp .lx-rightbottom h3{margin:0 0 9px;font-size:11px}
+#lxApp .lx-hash{overflow-wrap:anywhere;font:10px ui-monospace,Consolas,monospace;color:#586f7b;background:#f2f8f8;padding:8px;border-radius:7px;margin-top:5px}
+#lxApp .lx-foot{background:#103140;color:#d9efed;font-size:10px;display:flex;gap:12px;justify-content:space-between;align-items:center;padding:0 15px;min-width:0}
+#lxApp .lx-foot strong{color:#7ee0d0}
+#lxApp .lx-foot button{background:transparent;color:#bfeee9;font-weight:800;border:1px solid #427781;border-radius:5px;padding:4px 8px}
+#lxApp .lx-toast{position:absolute;right:20px;bottom:52px;z-index:2;background:#143849;color:#fff;padding:10px 12px;border-radius:8px;max-width:320px;font-size:11px;box-shadow:0 8px 30px #102d4055;display:none}
+#lxApp .lx-toast.show{display:block}
+#lxApp .lx-modalbg{position:absolute;inset:0;z-index:10;display:none;align-items:center;justify-content:center;background:#0c293ba8;padding:20px}
+#lxApp .lx-modalbg.show{display:flex}
+#lxApp .lx-modal{background:white;border-radius:14px;padding:22px;max-width:460px;width:100%;box-shadow:0 22px 80px #071d3078}
+#lxApp .lx-modal h2{margin:0 0 7px;font-size:18px}
+#lxApp .lx-modal p{font-size:12px;color:#67808b;line-height:1.6}
+#lxApp .lx-conn{border:1px solid #dae6e9;border-radius:8px;padding:10px 12px;margin:7px 0;display:flex;justify-content:space-between;align-items:center;gap:9px}
+#lxApp .lx-conn b{font-size:12px}.lx-conn small{font-size:10px;color:#82969f}
+#lxApp .lx-modal .lx-actions{margin-top:16px;justify-content:flex-end}
+@media(max-width:1230px){#lxApp .lx-grid{grid-template-columns:minmax(210px,23%) minmax(420px,1fr) minmax(220px,23%);gap:7px;padding:7px}#lxApp .lx-center{padding:9px}#lxApp .lx-panelbody{padding:10px}#lxApp .lx-tagline{display:none}}
+@media(max-height:780px) and (min-width:781px){#lxApp .lx-grid{padding:6px}#lxApp .lx-preview{min-height:130px}#lxApp #lxCanvas{min-height:140px}#lxApp .lx-human{padding:8px 10px}#lxApp .lx-workhead{padding:9px 13px}#lxApp .lx-data{padding:8px}}
+@media(max-width:780px){#lxApp{grid-template-rows:58px 42px minmax(0,1fr) 34px}#lxApp .lx-top{padding:0 10px}#lxApp .lx-run{display:none}#lxApp .lx-rolebar button{padding:7px;font-size:10px}#lxApp .lx-logo{font-size:18px}#lxApp .lx-badge{font-size:9px}#lxApp .lx-mobile-tabs{display:flex;background:#e9f1f3;border-bottom:1px solid #d7e6e9;padding:4px 10px;gap:5px}#lxApp .lx-mobile-tabs button{flex:1;background:transparent;border-radius:6px;color:#5c7783;font-weight:800}#lxApp .lx-mobile-tabs button[aria-pressed=true]{background:#fff;color:#0e756a}#lxApp .lx-grid{display:block;padding:7px;min-height:0}#lxApp .lx-grid>.lx-panel{display:none;height:100%}#lxApp[data-mobile-pane=part] .lx-left,#lxApp[data-mobile-pane=action] .lx-center,#lxApp[data-mobile-pane=evidence] .lx-right{display:flex}#lxApp .lx-right .lx-feed{min-height:120px}#lxApp .lx-foot{font-size:9px;padding:0 9px}#lxApp .lx-center{padding:8px}#lxApp .lx-workbody .lx-evidence{grid-template-columns:1fr 1fr}}
+@media(max-width:420px){#lxApp .lx-topright{gap:3px}#lxApp .lx-badge{display:none}#lxApp .lx-top{gap:5px}#lxApp .lx-grid{padding:5px}#lxApp .lx-heading h1{font-size:16px}#lxApp .lx-workbody{padding:8px}#lxApp .lx-data{padding:8px}#lxApp .lx-human{padding:8px}#lxApp .lx-human-row{grid-template-columns:1fr 1fr}#lxApp .lx-human input{padding:6px}#lxApp .lx-st label{font-size:8px}#lxApp .lx-st .lx-num{width:19px;min-width:19px;height:19px}#lxApp .lx-st{min-height:43px}#lxApp .lx-event{padding:7px 2px}}
