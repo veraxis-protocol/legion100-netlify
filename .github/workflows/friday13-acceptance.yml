@@ -60,3 +60,6 @@ jobs:
         run: node test-final003.mjs
       - name: Mandatory HITL 006 / CAD source and fail-closed contracts
         run: node test-hitl006.mjs
+
+      - name: Customer-first RFQ007 quote, CAD, HITL and commerce preview contracts
+        run: node test-rfq007.mjs
